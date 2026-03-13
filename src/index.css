@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@theme {
+	--font-display: "Bebas Neue", cursive;
+	--font-mono: "DM Mono", monospace;
+	--font-sans: "Noto Sans JP", sans-serif;
+
+	--color-bg: #0a0a0f;
+	--color-text: #e8e8f0;
+	--color-muted: #6b6b80;
+	--color-accent: #00e5ff;
+	--color-violet: #7c3aed;
+	--color-amber: #f59e0b;
+	--color-surface: #111118;
+	--color-surface2: #18181f;
+	--color-border: rgba(255, 255, 255, 0.06);
+
+	@keyframes fadeUp {
+		from {
+			opacity: 0;
+			transform: translateY(16px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+	@keyframes pulse {
+		0%,
+		100% {
+			box-shadow: 0 0 6px #10b981;
+		}
+		50% {
+			box-shadow: 0 0 18px #10b981;
+		}
+	}
+
+	--animate-fadeUp: fadeUp 0.5s ease both;
+	--animate-pulse: pulse 2s infinite;
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		@apply bg-bg text-text font-sans antialiased;
+		margin: 0;
+	}
+
+	#root {
+		@apply min-h-screen flex flex-col;
+	}
+}
+
+@layer utilities {
+	.text-shadow-glow {
+		text-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+	}
+}
+
+@media print {
+	.no-print {
+		display: none !important;
+	}
+
+	body {
+		background: white !important;
+		color: black !important;
+	}
+
+	.bg-bg,
+	.bg-surface,
+	.bg-surface2 {
+		background-color: white !important;
+		border-color: #eee !important;
+	}
+
+	.text-muted,
+	.text-white\/5 {
+		color: #666 !important;
+	}
+
+	.text-accent,
+	.text-violet-300,
+	.bg-clip-text {
+		color: black !important;
+		background: none !important;
+		-webkit-text-fill-color: initial !important;
+	}
+
+	.border-white\/5,
+	.border-white\/6,
+	.border-border {
+		border-color: #ddd !important;
+	}
+
+	.fixed,
+	.pointer-events-none {
+		display: none !important;
+	}
+
+	nav {
+		display: none !important;
+	}
+
+	section {
+		page-break-inside: avoid;
+		border-bottom: 1px solid #eee !important;
+	}
+
+	.max-w-5xl {
+		max-width: 100% !important;
+		padding: 0 !important;
+	}
+}
